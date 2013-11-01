@@ -2,7 +2,6 @@ node[:deploy].each do |application, deploy|
   script "config_apc" do
     interpreter "bash"
     user "root"
-    cwd "#{deploy[:deploy_to]}/current"
     code <<-EOH
       echo "extension=apc.so" > /etc/php5/cli/conf.d/apc.ini
       echo "apc.apc.stat = 0" >> /etc/php5/cli/conf.d/apc.ini

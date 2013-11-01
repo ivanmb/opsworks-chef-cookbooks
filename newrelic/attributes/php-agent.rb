@@ -7,3 +7,4 @@
 
 default['newrelic']['startup_mode'] = "agent"
 default['newrelic']['web_server']['service_name'] = "apache2"
+default['php']['ext_conf_dir'] = "/etc/php5/cli/conf.d"

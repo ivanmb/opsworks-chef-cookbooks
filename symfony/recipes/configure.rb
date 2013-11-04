@@ -67,5 +67,15 @@ node[:deploy].each do |application, deploy|
 
    
   include_recipe 'symfony::paramconfig'
+  include_recipe 'symfony::logrotate'
+
+  script "log_rotate" do
+    interpreter "bash"
+    user "root"
+    cwd "#{deploy[:deploy_to]}/current"
+    code <<-EOH
+    logrotate /etc/logrotate.conf
+    EOH
+  end
 
 end

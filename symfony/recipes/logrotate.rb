@@ -12,7 +12,7 @@ node[:deploy].each do |application, deploy|
     end
 
     variables(
-      :logfolder => ("#{deploy[:deploy_to]}/current/app/logs" rescue nil),
+      :logfolder => ("#{deploy[:deploy_to]}/current/app/logs" rescue nil)
     )
   end
 end

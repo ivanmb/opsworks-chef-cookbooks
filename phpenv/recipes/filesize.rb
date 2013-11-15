@@ -8,7 +8,8 @@ script "setup_php_filesize" do
   end
   user "root"
   code <<-EOH
-    cat php.ini | sed 's/upload\_max\_filesize .*/upload\_max\_filesize = 15M/' > php.ini
+    cp php.ini php.ini.orig
+    cat php.ini.orig | sed 's/upload\_max\_filesize .*/upload\_max\_filesize = 15M/' > php.ini
   EOH
   notifies :restart, resources(:service => 'apache2')
 end

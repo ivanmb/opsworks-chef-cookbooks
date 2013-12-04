@@ -50,7 +50,7 @@ node[:deploy].each do |application, deploy|
     user "root"
     cwd "#{deploy[:deploy_to]}/current"
     code <<-EOH
-    php composer.phar install --optimize-autoloader
+    php composer.phar install --optimize-autoloader --prefer-source
     EOH
   end
 

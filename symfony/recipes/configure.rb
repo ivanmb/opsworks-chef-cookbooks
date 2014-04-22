@@ -70,8 +70,8 @@ node[:deploy].each do |application, deploy|
     user "root"
     code <<-EOH
       { \
-       echo "*/1 * * * * php #{deploy[:deploy_to]}/current/app/console swiftmailer:spool:send --message-limit=50 --env=prod" && \
-       echo "30 4 * * * php #{deploy[:deploy_to]}/current/app/console micursada:notification-remind" \
+       echo "*/1 * * * * php #{deploy[:deploy_to]}/current/app/console swiftmailer:spool:send --message-limit=50 --env=prod" 2>&1 >> /var/log/mail-spooling.log && \
+       echo "30 4 * * * php #{deploy[:deploy_to]}/current/app/console micursada:notification-remind" 2>&1 >> /var/log/notification-reminder.log \
       ;} | crontab -u www-data -
     EOH
   end

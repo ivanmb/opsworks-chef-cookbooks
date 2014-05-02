@@ -71,7 +71,7 @@ node[:deploy].each do |application, deploy|
     code <<-EOH
       { \
        echo "*/1 * * * * php #{deploy[:deploy_to]}/current/app/console swiftmailer:spool:send --message-limit=50 --env=prod 2>&1 >> #{deploy[:deploy_to]}/current/app/logs/mail-spooling.log" && \
-       echo "00 15 * * 5 php #{deploy[:deploy_to]}/current/app/console micursada:notification-remind 2>&1 >> #{deploy[:deploy_to]}/current/app/logs/notification-reminder.log" \
+       echo "00 19 * * 5 php #{deploy[:deploy_to]}/current/app/console micursada:notification-remind --env=prod 2>&1 >> #{deploy[:deploy_to]}/current/app/logs/notification-reminder.log" \
       ;} | crontab -u www-data -
     EOH
   end

@@ -5,6 +5,7 @@ node[:deploy].each do |application, deploy|
     user "root"
     cwd "/"
     code <<-EOH
+    pecl channel-update pecl.php.net
     pecl install oauth 
     EOH
   end
